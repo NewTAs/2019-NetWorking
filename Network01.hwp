@@ -1,0 +1,54 @@
+Router>enable //특권모드
+Router#config t //Config 모드
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#exit
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface serial 0/0
+Router(config-if)#exit
+Router(config)#line console 0
+Router(config-line)#exit
+Router(config)#router rip
+Router(config-router)#exit
+Router(config)#interface fa
+Router(config)#interface fastEthernet 0/0.1
+Router(config-subif)#^Z //CTRL + Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+Router#disable
+Router>
+// exit은 바로 전 단계 모드로 가는 방법이고, Ctrl+Z은 특권모드로 돌아가는 방법이다.
+Router>?
+// ?을 누르면 현재 있는 모드에서 사용할 수 있는 명령어가 나온다.
+?을 누른 뒤, Enter키를 누르면 한 줄씩 내려가고, Space Bar를 누르면 한 페이지씩 내려간다.
+그리고 또한 많은 명령어를 그만 보고 싶다면 알파벳을 누르면 된다.
+Router>enable
+Router#c?
+//명령어의 이름을 모를 때, 앞 글자를 입력한 뒤에 ?를 누르게 되면, 그것으로 시작하는 명령어가 다 나온다.
+Router#clock
+% Incomplete command.
+//명령어가 완성이 되지 않음을 의미
+Router#clock ?
+//명령어 뒤에 따라오는 매개변수를 모를 때 ?를 누르게 되면, 필요한 매개변수가 나온다.
+  set  Set the time and date
+Router#clock set?
+  hh:mm:ss  Current Time
+Router#clock set 11:36:30 ?
+  <1-31>  Day of the month
+  MONTH   Month of the year
+Router#clock set 11:36:30 7 May 7 ?
+% Unrecognized command
+Router#clock set 11:36:30 7 May 7 2019 ?
+% Unrecognized command
+Router#clock set 11:36:30 7 May 7 2019
+                                ^
+% Invalid input detected at '^' marker.
+//매개변수가 옳지 않은 곳에 있음을 의미한다.
+	
+Router#clock set 11:36:30 7 May 2019
+Router#cl
+% Ambiguous command: "cl"
+//cl이 어떠한 명령어를 불러오라는 것인지 알 수 없음을 의미한다.
+Router#
